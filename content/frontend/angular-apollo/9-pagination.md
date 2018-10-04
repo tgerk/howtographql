@@ -208,7 +208,7 @@ Next, open `src/app/link-list/link-list.component.ts` and update `watchQuery` fu
       });
 
     // 5
-    const getQuery = (variables): Observable<ApolloQueryResult<AllLinkQueryResponse>> => {
+    const getQuery = (variables): Observable&lt;ApolloQueryResult&lt;AllLinkQueryResponse&gt;&gt; => {
       const query = this.apollo.watchQuery<AllLinkQueryResponse>({
         query: ALL_LINKS_QUERY,
         variables
@@ -220,7 +220,7 @@ Next, open `src/app/link-list/link-list.component.ts` and update `watchQuery` fu
     };
 
 
-    const allLinkQuery: Observable<ApolloQueryResult<AllLinkQueryResponse>> = Observable
+    const allLinkQuery: Observable&lt;ApolloQueryResult&lt;AllLinkQueryResponse&gt;&gt; = Observable
       // 6
       .combineLatest(first$, skip$, orderBy$, (first, skip, orderBy) => ({ first, skip, orderBy }))
       // 7
@@ -373,7 +373,7 @@ import _ from 'lodash'
 Still in `src/app/link-list/link-list.component.ts`, add the `orderedLinks` getter and implement it as following :
 
 ```ts(path=".../hackernews-angular-apollo/src/app/link-list/link-list.component.ts")
-get orderedLinks(): Observable<Link[]> {
+get orderedLinks(): Observable&lt;Link[]&gt; {
     return this.route.url
       .map((segments) => segments.toString())
       .map(path => {
